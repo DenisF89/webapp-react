@@ -1,18 +1,27 @@
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import Review from '../components/Review';
 
 function SingleMovie(){
 
-const movie = {
-                id:'1',
-                title:'Inception',
-                director:'Christopher Nolan',
-                genre:'Science Fiction',
-                release_year:2010,
-                abstract:'A skilled thief is given a chance at redemption if he can successfully perform inception.',
-                image:'inception.jpg'
-             };
+const {id} = useParams();
+const [movie, setMovie] = useState([])
 
-const reviews = [
+const apiUrl = "http://localhost:3000/movies/";
+const imgUrl = "http://localhost:3000/";
+
+
+useEffect(()=>{
+    axios.get(`${apiUrl}${id}`)
+    .then(response=>{
+        console.log(response.data);
+        setMovie(response.data);
+    }).catch(err=> console.error(err.message));
+},[]);
+
+
+/* const reviews = [
     {
         id:'1',
         name:'Marco',
@@ -43,7 +52,7 @@ const reviews = [
         vote:4,
         text:'Lorem Ipsum',
     }
-];
+]; */
 
     return(
         <div>
@@ -53,7 +62,7 @@ const reviews = [
                 <h2>{movie.title}</h2>
             </div>
             <div className="card-img-top">
-                <img src={movie.image} alt={movie.image} />
+                <img src={`${imgUrl}${movie.image}`} alt={movie.image} />
             </div>
             <div className="card-text">
                 <p>Regista:{movie.director}</p>
@@ -64,7 +73,7 @@ const reviews = [
             </div>
             <div className="card-reviews">
                 {
-                    reviews.map(review => (
+                    movie.reviews?.map(review => (
                         <div className="col" key={review.id}>
                             <Review review={review}/>
                         </div> )           

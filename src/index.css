@@ -82,9 +82,9 @@ h1 {
     margin: 20px 0;
   }
 }
-h2 {
+.card-title h2 {
   font-size: 24px;
-  line-height: 118%;
+  line-height: 100%;
   letter-spacing: -0.24px;
   margin: 0 0 8px;
   @media (max-width: 1024px) {
@@ -108,4 +108,13 @@ code {
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
+}
+
+img{
+  width:100%;
+}
+
+.card a{
+  text-decoration:none;
+  color:blue;
 }

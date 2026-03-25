@@ -1,6 +1,13 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
 import Card from '../components/Card';
 
-const movies = [
+
+
+
+function MovieList(){
+
+/* const movies = [
     {
         id:'1',
         title:'Inception',
@@ -76,9 +83,22 @@ const movies = [
         abstract:'A skilled thief is given a chance at redemption if he can successfully perform inception.',
         image:'inception.jpg'
     }
-];
+]; */
 
-function MovieList(){
+const [movies, setMovies] = useState([])
+
+const apiUrl = "http://localhost:3000/movies";
+
+useEffect(()=>{
+    axios.get(apiUrl)
+    .then(response=>{
+        console.log(response.data);
+        setMovies(response.data);
+    }).catch(err=> console.error(err.message));
+},[]);
+
+
+
     return(
         <div>
             <h1>Movie List</h1>
