@@ -1,3 +1,5 @@
+import Stars from "./Stars";
+
 function Review({review}){
 
  const {name,vote,text} = review;
@@ -6,7 +8,7 @@ function Review({review}){
 return(
                 <div className="">
                         <span>Nome: {name} </span>  
-                        <span>Voto: {vote} </span> 
+                        <span>Voto: <Stars value={vote}/></span> 
                         <span>Commento: {text} </span> 
                 </div>
     )
