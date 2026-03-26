@@ -6,7 +6,7 @@ import Review from '../components/Review';
 function SingleMovie(){
 
 const {id} = useParams();
-const [movie, setMovie] = useState([])
+const [movie, setMovie] = useState({})
 
 const apiUrl = "http://localhost:3000/movies/";
 const imgUrl = "http://localhost:3000/";
@@ -18,7 +18,7 @@ useEffect(()=>{
         console.log(response.data);
         setMovie(response.data);
     }).catch(err=> console.error(err.message));
-},[]);
+},[id]);
 
 
 /* const reviews = [
