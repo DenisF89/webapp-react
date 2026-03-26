@@ -72,6 +72,7 @@ useEffect(()=>{
                 <hr />
             </div>
             <div className="card-reviews">
+                <p>Voto: {movie.average_vote}</p>
                 {
                     movie.reviews?.map(review => (
                         <div className="col" key={review.id}>
