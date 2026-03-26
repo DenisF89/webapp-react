@@ -87,7 +87,7 @@ function MovieList(){
 
 const [movies, setMovies] = useState([])
 
-const apiUrl = "http://localhost:3000/movies";
+const apiUrl = "http://localhost:3000/api/movies";
 
 useEffect(()=>{
     axios.get(apiUrl)
@@ -100,8 +100,8 @@ useEffect(()=>{
 
 
     return(
-        <div>
-            <h1>Movie List</h1>
+        <div className="movie-list container-fluid">
+            <h1 className="page-title">Movie List</h1>
                 
             <div className="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-2">
                 

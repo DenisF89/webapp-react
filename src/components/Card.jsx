@@ -4,7 +4,7 @@ function Card({movie}){
 
  const {id,title,director,genre,release_year,abstract,image} = movie;
 
- const imgUrl = "http://localhost:3000/";
+ const imgUrl = "http://localhost:3000/static/movies/";
 
 return(
                 <div className="card">

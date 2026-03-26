@@ -8,8 +8,8 @@ function SingleMovie(){
 const {id} = useParams();
 const [movie, setMovie] = useState({})
 
-const apiUrl = "http://localhost:3000/movies/";
-const imgUrl = "http://localhost:3000/";
+const apiUrl = "http://localhost:3000/api/movies/";
+const imgUrl = "http://localhost:3000/static/movies/";
 
 
 useEffect(()=>{
