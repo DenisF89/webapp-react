@@ -92,9 +92,9 @@ img{
   width:100%;
 }
 
-.card a{
+.card a, .card h2{
   text-decoration:none;
-  color:blue;
+  color:rgb(255, 255, 255);
 }
 
 

@@ -25,44 +25,8 @@ useEffect(()=>{
 },[id]);
 
 
-/* const reviews = [
-    {
-        id:'1',
-        name:'Marco',
-        vote:4,
-        text:'Lorem Ipsum',
-    },
-        {
-        id:'2',
-        name:'Marco',
-        vote:4,
-        text:'Lorem Ipsum',
-    },
-        {
-        id:'3',
-        name:'Marco',
-        vote:4,
-        text:'Lorem Ipsum',
-    },
-        {
-        id:'4',
-        name:'Marco',
-        vote:4,
-        text:'Lorem Ipsum',
-    },
-        {
-        id:'5',
-        name:'Marco',
-        vote:4,
-        text:'Lorem Ipsum',
-    }
-]; */
-
     return(
-        <div>
-            
-
-            
+    <> 
         <div className="card">
             <div className="row g-0">
                 <div className="col-5 p-3">
@@ -72,32 +36,51 @@ useEffect(()=>{
                     <div className="card-title">
                         <h1>{movie.title}</h1>
                     </div>
-                    <div className="card-text">
-                        <p>Regista:{movie.director}</p>
-                        <p>Genere:{movie.genre}</p>
-                        <p>Anno:{movie.release_year}</p>
-                        <p>Trama:{movie.abstract}</p>
-                        <p>Voto: {movie.average_vote}</p>
+                    <div className="card-text text-start p-5">
+                        <div className="row mb-2">
+                            <div className="col-3">Regista:</div>
+                            <div className="col">{movie.director}</div>
+                        </div>
+                        <div className="row mb-2">
+                            <div className="col-3">Genere:</div>
+                            <div className="col">{movie.genre}</div>
+                        </div>
+                        <div className="row mb-2">
+                            <div className="col-3">Anno:</div>
+                            <div className="col">{movie.release_year}</div>
+                        </div>
+                        <div className="row mb-2">
+                            <div className="col-3">Trama:</div>
+                            <div className="col">{movie.abstract}</div>
+                        </div>
+                        <div className="row mb-2">
+                            <div className="col-3">Voto:</div>
+                            <div className="col">{movie.average_vote}</div>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
         </div>
 
-            <div className="row row-cols-1 row-cols-md-3 g-2">
-                
-                {
-                    movie.reviews?.map(review => (
-                        <div className="col" key={review.id}>
-                            <Review review={review}/>
-                        </div> )           
-                    )
-                }
-            </div>
-            <div>
-                <Form url={apiUrl} id={id} func = {getMovies} />
-            </div>
+        <h2 className="m-3">Recensioni</h2>
 
+        <div className="row row-cols-1 row-cols-md-3 g-2 m-2 align-items-stretch ">
+            
+            {
+                movie.reviews?.map(review => (
+                    <div className="col" key={review.id}>
+                        <Review review={review}/>
+                    </div> )           
+                )
+            }
         </div>
+
+        <div className="row m-4">
+            <Form url={apiUrl} id={id} func = {getMovies} />
+        </div>
+
+    </>
     );
 }
 

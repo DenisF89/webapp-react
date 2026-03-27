@@ -103,7 +103,7 @@ useEffect(()=>{
         <div className="movie-list container-fluid">
             <h1 className="page-title">Movie List</h1>
                 
-            <div className="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-2">
+            <div className="row row-cols-1 row-cols-md-3 g-2">
                 
                     {
                         movies.map(movie => (
