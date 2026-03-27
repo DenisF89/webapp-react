@@ -26,6 +26,11 @@ const Form = ({url, id, func})=>{
     let{name,value}= e.target;                        //destructuring del target
     setForm(form=>({...form, [name]:value}));           //crea oggetto da form e sovrascrive l'attributo che corrisponde al nome dell'input
   }
+
+  const handleVote = (star)=>{                            //Salva dati del form in uno stato                        //destructuring del target
+    setForm(form=>({...form, vote:star}));           //crea oggetto da form e sovrascrive l'attributo che corrisponde al nome dell'input
+    setErrors(errors=>({...errors, vote:""}));
+  }
   
   const addReview = ()=>{                              //Aggiunge una nuova recensione da form
                                    //non fa ricaricare la pagina al submit
@@ -52,16 +57,18 @@ const Form = ({url, id, func})=>{
 
     if (!form.name.trim()) 
               {newErrors.name = "Inserisci il nome";}
-
+console.log("vote:", form.vote, "tipo:", typeof form.vote);
     if (isNaN(form.vote)) 
               {newErrors.vote = "Inserisci un numero";}
     else if (Number(form.vote) < 1 || Number(form.vote) > 5) 
-              {newErrors.vote = "Il voto deve essere tra 1 e 5";}
+              {console.log("attenzione");newErrors.vote = "Voto non valido";}
 
     if (!form.text.trim()) 
             {newErrors.text = "Inserisci il testo";} 
     else if (form.text.trim().length < 5) 
-            {newErrors.text = "Il testo deve avere almeno 5 caratteri";}
+            {newErrors.text = "Il testo è troppo corto";}
+    else if (form.text.trim().length > 100) 
+            {newErrors.text = "Il testo è troppo lungo";}
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -78,23 +85,31 @@ const Form = ({url, id, func})=>{
             <label htmlFor="new-name">Nome</label>
             <input id="new-name" name="name" 
                   className={`form-control ${errors.name ? "is-invalid" : ""}`}
-                  placeholder='Riempire il campo' value={form.name} onChange={handleField}/>
+                  placeholder='Nome' value={form.name} onChange={handleField}/>
             <div className="invalid-feedback">{errors.name}</div>
           </div>
 
           <div className="col-md-2">
-            <label htmlFor="new-vote">Voto</label>
-            <input id="new-vote" name="vote" 
-                  className={`form-control ${errors.vote ? "is-invalid" : ""}`}
-                  placeholder='Riempire il campo' value={form.vote} onChange={handleField}/>
-            <div className="invalid-feedback">{errors.vote}</div>
+            <label>Voto</label>
+            <div className={`star-wrapper ${errors.vote ? "is-invalid" : ""}`}>
+              {[1, 2, 3, 4, 5].map((star) => (
+                <button key={star} 
+                  type="button"
+                  className= "stars"
+                  onClick={() => handleVote(star)}
+                >
+                {star <= form.vote ? "★" : "☆"}
+                </button>
+              ))}
+              </div>
+          <div className="invalid-feedback">{errors.vote}</div>
           </div>
 
           <div className="col-md-6">
             <label htmlFor="new-text">Testo</label>
             <input id="new-text" name="text" 
                   className={`form-control ${errors.text ? "is-invalid" : ""}`}
-                  placeholder='Riempire il campo' value={form.text} onChange={handleField} />
+                  placeholder='Testo' value={form.text} onChange={handleField} />
             <div className="invalid-feedback">{errors.text}</div>
           </div>
 
