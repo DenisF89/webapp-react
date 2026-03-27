@@ -1,7 +1,7 @@
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
+  --text: #000000;
+  --text-h: #000000;
+  --bg: #242424;
   --border: #e5e4e7;
   --code-bg: #f4f3ec;
   --accent: #aa3bff;
@@ -33,7 +33,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --text: #9ca3af;
-    --text-h: #f3f4f6;
+    --text-h: #2c2c2c;
     --bg: #16171d;
     --border: #2e303a;
     --code-bg: #1f2028;
@@ -77,37 +77,15 @@ h1 {
   font-size: 56px;
   letter-spacing: -1.68px;
   margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
 }
 .card-title h2 {
   font-size: 24px;
   line-height: 100%;
   letter-spacing: -0.24px;
   margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
 }
 p {
   margin: 0;
-}
-
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
-
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
 }
 
 img{
@@ -118,6 +96,75 @@ img{
   text-decoration:none;
   color:blue;
 }
+
+
+/* App container tweaks */
+.container-app{
+  padding: 24px 12px;
+}
+
+.page-title{ /* used by pages */
+  margin: 20px 0;
+  font-size: 2rem;
+  color: var(--text-h);
+  text-align: left;
+}
+
+/* Movie card adjustments (works with Bootstrap .card markup) */
+.movie-card,
+.card.movie-card{
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  transition: transform .15s ease, box-shadow .15s ease;
+  background: var(--bg);
+}
+.movie-card:hover{ transform: translateY(-6px); box-shadow: rgba(0,0,0,0.12) 0 14px 22px -8px; }
+.movie-card .card-img-top img{ width:100%; height:220px; object-fit:cover; display:block; }
+.movie-card .card-body{ padding: 12px; }
+.movie-card .card-title{ margin-bottom:6px; }
+.movie-card .card-text{ color:var(--text); font-size:0.95rem }
+
+/* Forms: style Bootstrap form elements to match theme */
+.form-section{ max-width:760px; margin: 0 auto 24px; }
+.form-section .form-control{
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  padding: 10px 12px;
+  box-shadow: none;
+}
+.form-section .form-control:focus{ box-shadow: 0 0 0 0.15rem var(--accent-bg); border-color: var(--accent-border); }
+.form-section label{ color:var(--text-h); font-weight:500; }
+
+/* Buttons */
+.btn-primary{
+  background: linear-gradient(180deg,var(--accent) 0%, rgba(170,59,255,0.9) 100%);
+  border-color: var(--accent-border);
+  box-shadow: none;
+}
+.btn-primary:hover, .btn-primary:focus{ filter:brightness(.95); }
+
+/* Reviews / list groups */
+.reviews-list .list-group-item{ border:1px solid var(--border); border-radius:8px; margin-bottom:10px; background:var(--code-bg); }
+
+/* Single movie layout helpers (works with Bootstrap grid) */
+.single-movie-hero{ display:flex; gap:20px; align-items:flex-start; margin-bottom:18px; }
+.single-movie-hero .poster{ flex:0 0 420px; max-width:420px; }
+.single-movie-hero .poster img{ width:100%; height:auto; border-radius:8px; }
+.single-movie-hero .meta{ flex:1; text-align:left; }
+
+/* Responsive adjustments */
+@media (max-width: 767px){
+  .page-title{ text-align:center; font-size:1.6rem }
+  .single-movie-hero{ flex-direction:column; align-items:center }
+  .single-movie-hero .meta{ text-align:center }
+}
+
+/* small utility tweaks to complement Bootstrap spacing */
+.mb-18{ margin-bottom: 18px !important; }
+.mt-12{ margin-top: 12px !important; }
 
 /* .yellow{
   color:yellow;

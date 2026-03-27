@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Review from '../components/Review';
+import Form from '../components/Form';
 
 function SingleMovie(){
 
@@ -11,13 +12,16 @@ const [movie, setMovie] = useState({})
 const apiUrl = "http://localhost:3000/api/movies/";
 const imgUrl = "http://localhost:3000/static/movies/";
 
-
-useEffect(()=>{
+const getMovies = ()=>{
     axios.get(`${apiUrl}${id}`)
     .then(response=>{
         console.log(response.data);
         setMovie(response.data);
     }).catch(err=> console.error(err.message));
+}
+
+useEffect(()=>{
+    getMovies()
 },[id]);
 
 
@@ -56,23 +60,31 @@ useEffect(()=>{
 
     return(
         <div>
-            <h1>Single Movie</h1>
+            
 
-            <div className="card-title">
-                <h2>{movie.title}</h2>
+            
+        <div className="card">
+            <div className="row g-0">
+                <div className="col-5 p-3">
+                    <img className="card-img" src={`${imgUrl}${movie.image}`} alt={movie.image} />
+                </div>
+                <div className="col-7">
+                    <div className="card-title">
+                        <h1>{movie.title}</h1>
+                    </div>
+                    <div className="card-text">
+                        <p>Regista:{movie.director}</p>
+                        <p>Genere:{movie.genre}</p>
+                        <p>Anno:{movie.release_year}</p>
+                        <p>Trama:{movie.abstract}</p>
+                        <p>Voto: {movie.average_vote}</p>
+                    </div>
+                </div>
             </div>
-            <div className="card-img-top">
-                <img src={`${imgUrl}${movie.image}`} alt={movie.image} />
-            </div>
-            <div className="card-text">
-                <p>Regista:{movie.director}</p>
-                <p>Genere:{movie.genre}</p>
-                <p>Anno:{movie.release_year}</p>
-                <p>Trama:{movie.abstract}</p>
-                <hr />
-            </div>
-            <div className="card-reviews">
-                <p>Voto: {movie.average_vote}</p>
+        </div>
+
+            <div className="row row-cols-1 row-cols-md-3 g-2">
+                
                 {
                     movie.reviews?.map(review => (
                         <div className="col" key={review.id}>
@@ -80,6 +92,9 @@ useEffect(()=>{
                         </div> )           
                     )
                 }
+            </div>
+            <div>
+                <Form url={apiUrl} id={id} func = {getMovies} />
             </div>
 
         </div>

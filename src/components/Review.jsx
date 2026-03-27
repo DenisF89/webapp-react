@@ -6,7 +6,7 @@ function Review({review}){
                                   
 
 return(
-                <div className="">
+                <div className="card">
                         <span>Nome: {name} </span>  
                         <span>Voto: <Stars value={vote}/></span> 
                         <span>Commento: {text} </span> 

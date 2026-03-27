@@ -7,7 +7,7 @@ function Card({movie}){
  const imgUrl = "http://localhost:3000/static/movies/";
 
 return(
-                <div className="card">
+                <div className="card movie-card">
                     
                         <div className="card-title">
                             <h2>{title}</h2>
