@@ -1,9 +1,18 @@
-import { NavLink } from "react-router-dom";
-
-//La Navbar gestisce i link del menu principale con NavLink di React Router
-//se uno dei link corrisponde alla pagina corrente, gli viene dato classe active
+import { NavLink, useNavigate  } from "react-router-dom";
+import { useState } from "react";
 
  function Navbar(){
+
+    const [search,setSearch] = useState("");
+    const navigate = useNavigate();
+
+    const searchMovie = (e)=>{
+        e.preventDefault();  
+
+         navigate(`/movies?search=${encodeURIComponent(search)}`);
+    
+    }
+
 
     return (
         <>
@@ -24,9 +33,9 @@ import { NavLink } from "react-router-dom";
                         <NavLink className="nav-link" to="/movies">Film</NavLink>
                     </li>
                 </ul>
-                <form className="d-flex" role="search">
-                    <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                    <button className="btn btn-outline-success" type="submit">Search</button>
+                <form onSubmit={searchMovie} className="d-flex w-50" role="search">
+                    <input className="form-control me-2 flex-grow-1" type="search" placeholder="Cerca per titolo, regista, genere, anno" aria-label="Search" name="search" value={search} onChange={(e)=>setSearch(e.target.value)}/>
+                    <button className="btn btn-outline-success" type="submit">Cerca</button>
                 </form>
                 </div>
             </div>

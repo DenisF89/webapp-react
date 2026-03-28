@@ -98,11 +98,17 @@ img{
 }
 
 .stars{
-  color:white;
-  background-color:#8d8d8d;
+  color:rgb(0, 0, 0);
+  background-color:#ffffff;
   padding: 2px 4px;
   border: none;
   font-size:1.3rem;
+}
+
+.newReview{
+  margin:12px;
+  padding:12px;
+  width:98%;
 }
 
 

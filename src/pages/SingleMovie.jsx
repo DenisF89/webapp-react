@@ -76,7 +76,7 @@ useEffect(()=>{
             }
         </div>
 
-        <div className="row m-4">
+        <div className="row mt-4">
             <Form url={apiUrl} id={id} func = {getMovies} />
         </div>
 
