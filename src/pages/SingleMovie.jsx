@@ -9,6 +9,7 @@ function SingleMovie(){
 const {id} = useParams();
 const [movie, setMovie] = useState({})
 
+
 const apiUrl = "http://localhost:3000/api/movies/";
 const imgUrl = "http://localhost:3000/static/movies/";
 
@@ -70,7 +71,7 @@ useEffect(()=>{
             {
                 movie.reviews?.map(review => (
                     <div className="col" key={review.id}>
-                        <Review review={review}/>
+                        <Review review={review} func={getMovies}/>
                     </div> )           
                 )
             }

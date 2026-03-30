@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import axios from "axios";
 
@@ -71,7 +72,7 @@ function Login() {
       
         <div>
             <h1>Ciao {user.username}</h1>
-            <p>Gestisci le recensioni dei film</p>
+            <p><Link to="/movies" className="btn btn-outline-primary">Gestisci le recensioni dei film</Link></p>
             
             <button type="button" className="btn btn-outline-secondary mt-3" onClick={(e)=>logout()}>Logout</button>
         </div>
