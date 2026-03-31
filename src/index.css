@@ -190,4 +190,64 @@ img{
   margin-left:5px;
 }
 
+.overlay{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,0.5);
+  z-index:9999;
+}
+
+.confirm-modal{
+  width:500px;
+  background:#fff;
+  border-radius: 1rem;
+  padding:20px;
+  position:relative;
+}
+
+.m-title{
+  margin:0 28px 10px 0;
+  font-size:1.15rem;
+  color:#1a1a1a;
+}
+
+.m-text{
+  margin:0 0 16px;
+  line-height:1.4;
+  color:#222;
+}
+
+.m-buttons{
+  display:flex;
+  gap:10px;
+  justify-content:center
+}
+
+.m-btn{
+  border:1px solid #ccc;
+  background:#f6f6f6;
+  padding:10px 14px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.m-btn:hover{
+  filter:brightness(0.9);
+}
+
+.m-cancel{
+  background:#fff;
+  color:#1a1a1a;
+}
+
+.m-delete{
+  border-color:#b00020;
+  background:#b00020;
+  color:#fff;
+}
+
 
