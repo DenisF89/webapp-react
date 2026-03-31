@@ -1,10 +1,13 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext();
 
 function AuthProvider({ children }) {
 
     const [user, setUser] = useState(null);
+
+    const navigate = useNavigate();
 
 
     const login = (userData) => {
@@ -15,6 +18,7 @@ function AuthProvider({ children }) {
     const logout = () => {
         setUser(null);
         localStorage.removeItem("user");    //cancella dati del login nel browser altrimenti resta loggato
+        navigate('/');
     };
 
     useEffect(() => {

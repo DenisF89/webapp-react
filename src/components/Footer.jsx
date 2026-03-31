@@ -1,9 +1,9 @@
 function Footer(){
     return(
-        <div>
-            <p>Footer</p>
-        </div>
+            <>
+            Webapp React+Express &copy;2026
+            </>
     );
 }
 
-export default Footer
+export default Footer;

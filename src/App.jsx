@@ -5,13 +5,14 @@ import DefaultLayout from './layouts/DefaultLayout'
 import Home from './pages/Home'
 import MovieList from './pages/MovieList'
 import SingleMovie from './pages/SingleMovie'
-import ErrorPage from './pages/ErrorPage'
 import Login from './pages/Login'
+import ErrorPage from './pages/ErrorPage'
 
 function App() {
   return (
-    <AuthProvider>
-      <BrowserRouter>                                     
+    
+      <BrowserRouter>   
+        <AuthProvider>                               
         <Routes>                                                               
           <Route Component={DefaultLayout}>
             <Route path="/" Component={Home} />
@@ -21,8 +22,8 @@ function App() {
             <Route path="*" Component={ErrorPage} />
           </Route>
         </Routes>
+        </AuthProvider>   
       </BrowserRouter>
-    </AuthProvider>
   )
 }
 

@@ -9,7 +9,7 @@ return(<>
                 <div className="overlay">
 
                     <div className="confirm-modal">
-                        <button type="button" class="btn-close position-absolute top-0 end-0 m-2" onClick={hide} ></button>
+                        <button type="button" className="btn-close position-absolute top-0 end-0 m-2" onClick={hide} ></button>
 
                         <h3 className="m-title">Conferma eliminazione</h3>
 
