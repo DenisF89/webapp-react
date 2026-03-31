@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext();
 
@@ -9,14 +9,23 @@ function AuthProvider({ children }) {
 
     const login = (userData) => {
         setUser(userData);
+        localStorage.setItem("user", JSON.stringify(userData)); //persistenza nel browser altrimenti al refresh si resetta lo state. Json=>Stringa
     };
 
     const logout = () => {
         setUser(null);
+        localStorage.removeItem("user");    //cancella dati del login nel browser altrimenti resta loggato
     };
 
+    useEffect(() => {
+        const savedUser = localStorage.getItem("user");   //al caricamento del componente recupero user dal browser se esiste
+        if (savedUser) {
+            setUser(JSON.parse(savedUser)); //Stringa => JSON
+        }
+        }, []);
+
     return (
-        <AuthContext.Provider value={{user, login, logout, isAuth: !!user}}>
+        <AuthContext.Provider value={{user, login, logout, isAuth: user?.role==='admin'}}>
             {children}
         </AuthContext.Provider>
     );
