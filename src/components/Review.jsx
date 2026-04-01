@@ -23,10 +23,8 @@ const [toDelete,setToDelete] = useState(defaultDelete);
         
         axios.delete(apiUrl)
         .then(response=>{
-                console.log("eliminata"); 
                 func();
                 hideModal();
-                
         })
         .catch(error=>{
                 console.error(error);

@@ -1,7 +1,5 @@
 const Modal = ({isVisible,toDelete,hide,deleteR})=>{
 
-    console.log(toDelete);
-
 return(<>
             {
                 isVisible && toDelete?.name &&

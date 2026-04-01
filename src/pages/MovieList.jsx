@@ -97,7 +97,6 @@ const apiUrl = "http://localhost:3000/api/movies";
 useEffect(()=>{
     axios.get(apiUrl,{params:{search:search}})
     .then(response=>{
-        console.log(response.data);
         setMovies(response.data);
     }).catch(err=> console.error(err.message));
 },[search]);

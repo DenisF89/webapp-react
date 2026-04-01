@@ -36,7 +36,6 @@ const Form = ({url, id, func})=>{
                                    //non fa ricaricare la pagina al submit
     axios.post(`${url}${id}`, capitalize(form))
     .then(response=>{
-        console.log(response);
         func();
         setForm(fieldsDefault);                            //resetta il form, tutti gli input a ''
         setErrors({});
@@ -57,12 +56,10 @@ const Form = ({url, id, func})=>{
 
     if (!form.name.trim()) 
               {newErrors.name = "Inserisci il nome";}
-console.log("vote:", form.vote, "tipo:", typeof form.vote);
     if (isNaN(form.vote)) 
               {newErrors.vote = "Inserisci un numero";}
     else if (Number(form.vote) < 1 || Number(form.vote) > 5) 
-              {console.log("attenzione");newErrors.vote = "Voto non valido";}
-
+              {newErrors.vote = "Voto non valido";}
     if (!form.text.trim()) 
             {newErrors.text = "Inserisci il testo";} 
     else if (form.text.trim().length < 5) 

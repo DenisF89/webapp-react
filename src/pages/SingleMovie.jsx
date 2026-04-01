@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Review from '../components/Review';
 import Form from '../components/Form';
@@ -9,6 +9,7 @@ function SingleMovie(){
 const {id} = useParams();
 const [movie, setMovie] = useState({})
 
+const navigate = useNavigate();
 
 const apiUrl = "http://localhost:3000/api/movies/";
 const imgUrl = "http://localhost:3000/static/movies/";
@@ -16,9 +17,10 @@ const imgUrl = "http://localhost:3000/static/movies/";
 const getMovies = ()=>{
     axios.get(`${apiUrl}${id}`)
     .then(response=>{
-        console.log(response.data);
         setMovie(response.data);
-    }).catch(err=> console.error(err.message));
+    }).catch(err=> {console.error(err.message)
+                    navigate('/error');
+                    });
 }
 
 useEffect(()=>{
