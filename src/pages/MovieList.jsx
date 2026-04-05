@@ -1,105 +1,27 @@
+//HOOKS
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+//LIBRERIE
 import axios from "axios";
+//COMPONENTI 
 import Card from '../components/Card';
-
-
-
 
 function MovieList(){
 
-/* const movies = [
-    {
-        id:'1',
-        title:'Inception',
-        director:'Christopher Nolan',
-        genre:'Science Fiction',
-        release_year:2010,
-        abstract:'A skilled thief is given a chance at redemption if he can successfully perform inception.',
-        image:'inception.jpg'
-    },
-        {
-        id:'2',
-        title:'Inception',
-        director:'Christopher Nolan',
-        genre:'Science Fiction',
-        release_year:2010,
-        abstract:'A skilled thief is given a chance at redemption if he can successfully perform inception.',
-        image:'inception.jpg'
-    },
-        {
-        id:'3',
-        title:'Inception',
-        director:'Christopher Nolan',
-        genre:'Science Fiction',
-        release_year:2010,
-        abstract:'A skilled thief is given a chance at redemption if he can successfully perform inception.',
-        image:'inception.jpg'
-    },
-        {
-        id:'4',
-        title:'Inception',
-        director:'Christopher Nolan',
-        genre:'Science Fiction',
-        release_year:2010,
-        abstract:'A skilled thief is given a chance at redemption if he can successfully perform inception.',
-        image:'inception.jpg'
-    },
-        {
-        id:'5',
-        title:'Inception',
-        director:'Christopher Nolan',
-        genre:'Science Fiction',
-        release_year:2010,
-        abstract:'A skilled thief is given a chance at redemption if he can successfully perform inception.',
-        image:'inception.jpg'
-    }
-    ,
-        {
-        id:'6',
-        title:'Inception',
-        director:'Christopher Nolan',
-        genre:'Science Fiction',
-        release_year:2010,
-        abstract:'A skilled thief is given a chance at redemption if he can successfully perform inception.',
-        image:'inception.jpg'
-    }
-    ,
-        {
-        id:'7',
-        title:'Inception',
-        director:'Christopher Nolan',
-        genre:'Science Fiction',
-        release_year:2010,
-        abstract:'A skilled thief is given a chance at redemption if he can successfully perform inception.',
-        image:'inception.jpg'
-    }
-    ,
-        {
-        id:'8',
-        title:'Inception',
-        director:'Christopher Nolan',
-        genre:'Science Fiction',
-        release_year:2010,
-        abstract:'A skilled thief is given a chance at redemption if he can successfully perform inception.',
-        image:'inception.jpg'
-    }
-]; */
+    //VARIABILI
+    const [movies, setMovies] = useState([])            //State in cui salvare lista movies
+    const [searchParams] = useSearchParams();           
+    const search = searchParams.get("search") || "";    //recupero parametri di query string passati dal form di ricerca nella navbar
 
-const [movies, setMovies] = useState([])
-const [searchParams] = useSearchParams();
-const search = searchParams.get("search") || "";
+    const apiUrl = "http://localhost:3000/api/movies";
 
-const apiUrl = "http://localhost:3000/api/movies";
-
- 
-
-useEffect(()=>{
-    axios.get(apiUrl,{params:{search:search}})
-    .then(response=>{
-        setMovies(response.data);
-    }).catch(err=> console.error(err.message));
-},[search]);
+    //RICHIESTA AL SERVER 
+    useEffect(()=>{
+        axios.get(apiUrl,{params:{search:search}})      //richiesta tipo Index con eventuale query params search (api/movies?search=stringa)
+        .then(response=>{
+            setMovies(response.data);
+        }).catch(err=> console.error(err.message));
+    },[search]);                                        //ripeti richiesta ogni volta che il filtro (query string) cambia
 
 
 
@@ -112,7 +34,9 @@ useEffect(()=>{
                     {
                         movies.map(movie => (
                             <div className="col" key={movie.id}>
+
                                 <Card movie={movie}/>
+                                
                             </div> )           
                         )
                     }

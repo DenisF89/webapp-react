@@ -6,13 +6,8 @@ const Stars = ({value})=>{
 
         return(
             Array.from({ length:5},(_,i) =>                             //creo array per ciclare 5 volte (0,1,2,3,4)
-            <span   key={i}
-            //className={"rating "+(i < filled ?"yellow":"")}
-            >{i < filled ? "★" : "☆"}                 
-            </span>
-            )
-        ) 
-        
+            <span key={i}> {i < filled ? "★" : "☆"} </span>
+            )) 
 }
 
 

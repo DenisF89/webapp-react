@@ -5,15 +5,11 @@ function Home(){
     return(
         <div>
             <h1>Webapp React & Express</h1>
-
-            <img src={img} alt="Logo" style={{ width: '400px' }}
-      />
-        <div className="row mt-4 ms-4 text-start"> 
-            <p>Questa applicazione è stata sviluppata utilizzando React per il frontend e Express per il backend.</p>
-
-            <p>Il progetto integra i concetti base dello sviluppo web, tra cui:</p>
-        </div>   
-
+            <img src={img} alt="Logo" style={{ width: '400px' }}/>
+            <div className="row mt-4 ms-4 text-start"> 
+                <p>Questa applicazione è stata sviluppata utilizzando React per il frontend e Express per il backend.</p>
+                <p>Il progetto integra i concetti base dello sviluppo web, tra cui:</p>
+            </div>   
             <div className="row small-text">
                 <div className="col text-start mt-2 ms-5 p-2 ">
                     <h2>Frontend</h2>

@@ -29,7 +29,7 @@ function AuthProvider({ children }) {
         }, []);
 
     return (
-        <AuthContext.Provider value={{user, login, logout, isAuth: user?.role==='admin'}}>
+        <AuthContext.Provider value={{user, login, logout, isAuth: user?.role==='admin'}}> {/* isAuth (true/false) controlla che l'user loggato abbia ruolo 'admin' */}
             {children}
         </AuthContext.Provider>
     );

@@ -5,24 +5,24 @@ import axios from "axios";
 
 function Login() {
 
-    const { login,user,logout,isAuth } = useAuth();
-    
+    //VARIABILI CONTEXT
+    const { login,user,logout,isAuth } = useAuth();        
+    //VARIABILI FORM
     const fieldsDefault = {username: "",password: ""};
     const [form, setForm] = useState(fieldsDefault);
-    
+    //RESPONSE
     const [message, setMessage] = useState("");
 
-
+    //FUNCTIONS 
+      //CONTROLLED FORM
     const handleFields = (e) => {
         const{name,value}= e.target; 
         setForm({...form,[name]:value});
     };
 
-
+      //RICHIESTA API
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
-
         const apiUrl = "http://localhost:3000/api/login";
         axios.post(apiUrl,form)
         .then(response =>{
@@ -36,38 +36,41 @@ function Login() {
   }
 
   return (
-    <div>
-
-        {!isAuth ? (
+    <>
+      {!isAuth ? (      
+      
+        //SE ADMIN NON E' LOGGATO --> FORM DI LOGIN
       <>
-      <h1>Login</h1>
+        <h1>Login</h1>
 
-      <form className="form" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          value={form.username}
-          autoComplete="username"
-          onChange={handleFields}
-        />
+        <form className="form" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            value={form.username}
+            autoComplete="username"
+            onChange={handleFields}
+          />
 
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={form.password}
-          autoComplete="current-password"
-          onChange={handleFields}
-        />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={form.password}
+            autoComplete="current-password"
+            onChange={handleFields}
+          />
 
-        <button className="btn btn-outline-primary" type="submit">Login</button>
-      </form>
+          <button className="btn btn-outline-primary" type="submit">Login</button>
+        </form>
 
-      {message && <p>{message}</p>}
+        {message && <p>{message}</p>}
 
-        </>
+      </>
+
       ):(
+        //SE ADMIN E' LOGGATO
       <>
       
         <div>
@@ -76,10 +79,12 @@ function Login() {
             
             <button type="button" className="btn btn-outline-secondary mt-3" onClick={(e)=>logout()}>Logout</button>
         </div>
-        </>
+
+      </>
+
       )
     }
-    </div>
+    </>
   );
 }
 
